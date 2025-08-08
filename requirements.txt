@@ -1,1 +1,8 @@
-
+telebot
+requests
+numpy 
+tensorflow
+pillow 
+gdown 
+Flask 
+python-dotenv
