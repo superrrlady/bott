@@ -16,7 +16,7 @@ from flask import Flask, request
 TOKEN = os.getenv("BOT_TOKEN")
 bot = telebot.TeleBot(TOKEN)
 
-app = Flask(name)
+app = Flask(__name__)
 
 @app.route('/')
 def index():
@@ -203,7 +203,9 @@ if __name__ == "__main__":
             print("Webhook установлен:", r.text)
         except Exception as e:
             print("Ошибка при установке webhook:", e)
-        app.run(host='0.0.0.0', port=8080)
+        port = int(os.environ.get("PORT", 10000))
+        print(f"Starting server on port{port}")
+        app.run(host='0.0.0.0', port=port)
     else:
         print("Запуск бота в режиме pooling")
         bot.remove_webhook()
